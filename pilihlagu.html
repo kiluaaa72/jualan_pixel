@@ -148,11 +148,9 @@
   }
 
   // Fungsi lanjut
-function lanjut() {
-  const selectedSong = document.getElementById('laguSelect').value;
-  changeSong(selectedSong); // Panggil fungsi global
-  window.location.href = "halaman.html";
-}
+ function lanjut() {
+    const lagu = document.getElementById("laguSelect").value;
+    const audio = document.getElementById("bgMusic");
     
     // Set sumber audio dan putar
     audio.src = lagu;
