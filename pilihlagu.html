@@ -151,12 +151,13 @@ function lanjut() {
   localStorage.setItem("laguDipilih", lagu);
   localStorage.removeItem("laguWaktu"); // reset waktu mulai
 
-  if (nama) {
-    parent.document.getElementById("isi").src = `halaman.html?nama=${encodeURIComponent(nama)}`;
-  } else {
-    parent.document.getElementById("isi").src = "index.html";
-  }
+  // Ganti bagian ini di script:
+if (nama) {
+  parent.document.getElementById("isi").src = `pesan.html?nama=${encodeURIComponent(nama)}`;
+} else {
+  parent.document.getElementById("isi").src = "pesan.html";
 }
+
 
   </script>
 </body>
