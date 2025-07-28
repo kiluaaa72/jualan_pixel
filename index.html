@@ -9,57 +9,38 @@
 <body>
   <div class="stars"></div>
 
-  <header>
+  <main class="center-screen">
     <h1>🚀 Ucapan Luar Angkasa</h1>
-    <nav>
-      <a href="#">Beranda</a>
-      <a href="#">Pesan</a>
-      <a href="#">Foto</a>
-      <a href="#">Penutup</a>
-    </nav>
-  </header>
-
-  <main>
-    <h2>Selamat Datang di Luar Angkasa</h2>
-    <p>Rasakan suasana galaksi penuh bintang!</p>
-    <button>🎵 Putar Musik</button>
+    <p>Halo! Siapkan dirimu untuk perjalanan antar galaksi penuh kenangan ✨</p>
+    <button onclick="location.href='pesan.html'">Mulai 🚀</button>
   </main>
-
-  <footer>
-    © 2025 Ucapan Luar Angkasa.
-  </footer>
 
   <script>
     // Bintang acak
     const starsContainer = document.querySelector('.stars');
-    for (let i = 0; i < 150; i++) {
+    for (let i = 0; i < 120; i++) {
       const star = document.createElement('div');
       star.classList.add('star');
       star.style.top = Math.random() * 100 + 'vh';
       star.style.left = Math.random() * 100 + 'vw';
-      star.style.animationDuration = (1 + Math.random() * 3) + 's';
+      star.style.animationDuration = (1 + Math.random() * 2.5) + 's';
       starsContainer.appendChild(star);
     }
 
-    // Komet dari berbagai arah
+    // Komet animasi dari berbagai arah
     function createComet() {
       const comet = document.createElement('div');
       comet.classList.add('comet');
 
-      const directions = [
-        { dx: 300, dy: 300 },
-        { dx: -300, dy: 300 },
-        { dx: -300, dy: -300 },
-        { dx: 300, dy: -300 },
-      ];
+      const direction = [
+        { dx: 400, dy: 200 },
+        { dx: -400, dy: 200 },
+        { dx: -400, dy: -200 },
+        { dx: 400, dy: -200 },
+      ][Math.floor(Math.random() * 4)];
 
-      const direction = directions[Math.floor(Math.random() * directions.length)];
-
-      const startX = Math.random() * window.innerWidth;
-      const startY = Math.random() * window.innerHeight;
-
-      comet.style.top = `${startY}px`;
-      comet.style.left = `${startX}px`;
+      comet.style.top = Math.random() * window.innerHeight + 'px';
+      comet.style.left = Math.random() * window.innerWidth + 'px';
       comet.style.setProperty('--tx', `${direction.dx}px`);
       comet.style.setProperty('--ty', `${direction.dy}px`);
       comet.style.animation = `fly 2.2s ease-out forwards`;
