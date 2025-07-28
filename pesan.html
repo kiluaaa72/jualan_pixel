@@ -1,33 +1,86 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kirim Pesan</title>
-  <link rel="stylesheet" href="space.css">
-  <script defer src="space.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pesan dari Luar Angkasa</title>
+  <link rel="stylesheet" href="space.css" />
 </head>
 <body>
-  <header>
-    <h1>🚀 Kirim Pesan</h1>
-    <nav>
-      <a href="index.html">Beranda</a>
-      <a href="pesan.html">Pesan</a>
-      <a href="foto.html">Foto</a>
-      <a href="penutup.html">Penutup</a>
-    </nav>
-  </header>
-  <main>
-    <h2>Tulis Pesan Anda</h2>
-    <form id="pesanForm">
-      <input type="text" id="nama" placeholder="Nama Anda" required>
-      <textarea id="pesan" placeholder="Tulis ucapan..." required></textarea>
-      <button type="submit">Kirim</button>
-    </form>
-    <div id="hasilPesan"></div>
-  </main>
-  <footer>
-    <p>© 2025 Ucapan Luar Angkasa.</p>
-  </footer>
+  <!-- Bintang -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Astronaut -->
+  <img src="astronaut-cute.gif" alt="Astronaut lucu melayang" class="astronaut" id="astro" />
+
+  <!-- Popup Pesan -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h2>🚀 Pesan Dari Galaksi</h2>
+      <p id="popupMessage">...</p>
+      <button onclick="tutupPopup()">Terima 🌟</button>
+    </div>
+  </div>
+
+  <!-- Script bintang, komet, dan astronaut -->
+  <script>
+    // Bintang
+    const starsContainer = document.getElementById("stars");
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      star.style.top = Math.random() * 100 + "%";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.animationDuration = 1 + Math.random() * 3 + "s";
+      starsContainer.appendChild(star);
+    }
+
+    // Komet
+    function createComet() {
+      const comet = document.createElement("div");
+      comet.classList.add("comet");
+
+      const startX = Math.random() * window.innerWidth;
+      const startY = Math.random() * window.innerHeight;
+      const angle = Math.random() * Math.PI * 2;
+      const distance = 400 + Math.random() * 300;
+
+      const tx = Math.cos(angle) * distance;
+      const ty = Math.sin(angle) * distance;
+
+      comet.style.top = startY + "px";
+      comet.style.left = startX + "px";
+      comet.style.setProperty('--tx', `${tx}px`);
+      comet.style.setProperty('--ty', `${ty}px`);
+
+      document.body.appendChild(comet);
+      setTimeout(() => comet.remove(), 2000);
+    }
+    setInterval(createComet, 2000);
+
+    // Astronaut bergerak dan berputar
+    const astronaut = document.getElementById("astro");
+    function moveAstronaut() {
+      const screenW = window.innerWidth;
+      const screenH = window.innerHeight;
+      const randX = Math.random() * (screenW - 120);
+      const randY = Math.random() * (screenH - 120);
+      const rotateDeg = Math.random() * 360;
+      astronaut.style.transform = `translate(${randX}px, ${randY}px) rotate(${rotateDeg}deg)`;
+    }
+    setInterval(moveAstronaut, 3000);
+    moveAstronaut();
+  </script>
+
+  <!-- Script untuk menampilkan pesan -->
+  <script>
+    const pesanSpesial = "🌟 Halo Aisyah, kamu seperti bintang di malam gelap — selalu bersinar! Tetap semangat yaa 🚀";
+
+    document.getElementById("popupMessage").textContent = pesanSpesial;
+
+    function tutupPopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
 </body>
 </html>
