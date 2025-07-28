@@ -7,21 +7,82 @@ html, body {
     font-family: 'Orbitron', sans-serif;
     background: linear-gradient(to bottom, #0b0c10, #1f2833);
     color: #ffffff;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 }
 
-header {
-    padding: 20px;
-    text-align: center;
+/* Background Stars Layer */
+.stars {
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+    animation: moveStars 120s linear infinite;
+    z-index: -2;
+    opacity: 0.3;
 }
 
+@keyframes moveStars {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-500px, -500px); }
+}
+
+/* Cute Planet */
+.planet {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at 30% 30%, #ff9a9e, #fad0c4);
+    border-radius: 50%;
+    animation: floatPlanet 6s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes floatPlanet {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Comet */
+.comet {
+    position: absolute;
+    top: -50px;
+    right: -100px;
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(to right, #fff, transparent);
+    transform: rotate(-45deg);
+    animation: cometFly 10s linear infinite;
+    z-index: -1;
+}
+
+@keyframes cometFly {
+    0% { transform: translate(0, 0) rotate(-45deg); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translate(-1200px, 800px) rotate(-45deg); opacity: 0; }
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 20px;
+}
 header h1 {
     font-size: 2rem;
     color: #66fcf1;
     text-shadow: 0 0 8px #45a29e;
+    animation: rocketShake 2s ease-in-out infinite;
 }
 
+@keyframes rocketShake {
+    0%, 100% { transform: rotate(0); }
+    50% { transform: rotate(2deg); }
+}
+
+/* Navigation */
 nav a {
     color: #c5c6c7;
     margin: 0 10px;
@@ -32,6 +93,7 @@ nav a:hover {
     color: #66fcf1;
 }
 
+/* Main Section */
 main {
     flex: 1;
     display: flex;
@@ -39,7 +101,6 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 60vh;
 }
 
 button {
@@ -58,28 +119,10 @@ button:hover {
     color: #0b0c10;
 }
 
+/* Footer */
 footer {
     padding: 15px;
     text-align: center;
     font-size: 0.9rem;
     background: rgba(0, 0, 0, 0.3);
-}
-
-/* Background Stars */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-    animation: stars 200s linear infinite;
-    opacity: 0.2;
-    z-index: -1;
-}
-
-@keyframes stars {
-    from { background-position: 0 0; }
-    to { background-position: 0 -2000px; }
 }
