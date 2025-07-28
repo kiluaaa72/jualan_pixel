@@ -89,6 +89,7 @@
 </head>
 <body>
   <div class="stars" id="stars"></div>
+<audio id="bgMusic" loop></audio>
 
   <main class="container">
     <h1 style="color: cyan;">🎶 Pilih Lagu Galaksi</h1>
@@ -147,24 +148,31 @@
   }
 
   // Fungsi lanjut
-  function lanjut() {
+ function lanjut() {
     const lagu = document.getElementById("laguSelect").value;
+    const audio = document.getElementById("bgMusic");
+    
+    // Set sumber audio dan putar
+    audio.src = lagu;
+    audio.play().catch(e => {
+      console.log("Autoplay blocked, will play after interaction");
+      // Tambahkan tombol play manual jika diperlukan
+      const playBtn = document.createElement("button");
+      playBtn.textContent = "▶ Putar Musik";
+      playBtn.style.position = "fixed";
+      playBtn.style.bottom = "20px";
+      playBtn.style.right = "20px";
+      playBtn.onclick = () => audio.play();
+      document.body.appendChild(playBtn);
+    });
+
+    // Simpan lagu yang dipilih di localStorage
     localStorage.setItem("laguDipilih", lagu);
-    localStorage.removeItem("laguWaktu"); // Reset waktu mulai
-
-    const next = `pesan.html?nama=${encodeURIComponent(nama || "")}`;
-
-    try {
-      const iframe = parent.document.getElementById("isi");
-      if (iframe) {
-        iframe.src = next;
-      } else {
-        window.location.href = next;
-      }
-    } catch (e) {
-      window.location.href = next;
-    }
+    
+    // Redirect ke halaman.html
+    window.location.href = "halaman.html";
   }
+
 </script>
 
 </body>
