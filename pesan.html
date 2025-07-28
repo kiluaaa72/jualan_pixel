@@ -124,8 +124,21 @@
 
   <!-- Script untuk pesan dan emoji -->
   <script>
-    const pesanSpesial = "🌟 Halo Aisyah, kamu seperti bintang di malam gelap — selalu bersinar! Tetap semangat yaa 🚀";
-    document.getElementById("popupMessage").textContent = pesanSpesial;
+    const pesanSpesial = `
+🌟 Hai Jenny...
+
+Di antara ribuan bintang, matamu tetap yang paling bersinar.  
+Kehadiranmu seperti bulan di langit malam — tenang dan menenangkan.  
+Kalau dunia terasa berat, ingat ya... kamu nggak sendiri.  
+
+Kamu kuat, lebih dari yang kamu kira.  
+Kamu berharga, lebih dari yang kamu dengar.  
+Kamu dicintai, bahkan saat kamu lupa mencintai dirimu sendiri.  
+
+Tetap jadi Jenny yang luar biasa. Karena semesta pun bangga punya kamu 💖
+`;
+document.getElementById("popupMessage").innerHTML = pesanSpesial.replace(/\n/g, "<br>");
+
 
     function munculkanEmoji(emoji) {
       const span = document.createElement('span');
