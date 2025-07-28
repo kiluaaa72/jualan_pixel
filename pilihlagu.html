@@ -1,56 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Web Ucapan</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pilih Lagu Favorit</title>
+  <link rel="stylesheet" href="space.css" />
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
+    .container {
+      text-align: center;
+      padding: 2rem;
+      z-index: 2;
+      position: relative;
     }
-    iframe {
-      width: 100%;
-      height: 100%;
+
+    .emoji-float {
+      position: absolute;
+      font-size: 2rem;
+      animation: floatUp 2s ease-out forwards;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+    }
+
+    .lagu-box {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 20px;
+      display: inline-block;
+      margin-top: 2rem;
+      box-shadow: 0 0 20px cyan;
+    }
+
+    select {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 10px;
       border: none;
+      background-color: #00ffee;
+      color: black;
+      cursor: pointer;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: cyan;
+      color: black;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #00bbbb;
+    }
+
+    .astro-icon {
+      width: 120px;
+      margin-top: 2rem;
+      animation: swing 3s ease-in-out infinite;
+    }
+
+    @keyframes swing {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(10deg); }
+    }
+
+    #type-text {
+      font-size: 1.2rem;
+      color: white;
+      margin-top: 1rem;
+      height: 1.5rem;
     }
   </style>
 </head>
 <body>
-  <!-- Pemutar lagu -->
-  <audio id="bgm" autoplay loop hidden></audio>
+  <div class="stars" id="stars"></div>
 
-  <!-- Iframe konten -->
-  <iframe id="isi" src="index.html"></iframe>
+  <main class="container">
+    <h1 style="color: cyan;">🎶 Pilih Lagu Galaksi</h1>
+    <p id="type-text"></p>
 
-  <script>
-    const audio = document.getElementById("bgm");
-    const lagu = localStorage.getItem("laguDipilih");
-    const waktu = localStorage.getItem("laguWaktu");
+    <div class="lagu-box">
+      <select id="laguSelect" onchange="showEmoji()">
+        <option value="lagu 1.mp3">💫 Lagu favoritmu</option>
+        <option value="lagu 2.mp3">🌙 Lagu favoritku</option>
 
-    if (lagu) {
-      audio.src = lagu;
-      audio.load();
+      </select>
+      <br/>
+      <button onclick="lanjut()">Lanjutkan 🚀</button>
+    </div>
 
-      audio.addEventListener("loadedmetadata", () => {
-        if (waktu) {
-          audio.currentTime = parseFloat(waktu);
-        }
-        audio.play().catch((err) => {
-          console.warn("Autoplay gagal, butuh interaksi:", err);
-        });
-      });
+    <img src="astronaut-cute.gif" class="astro-icon" alt="Astro Lucu" />
+  </main>
 
-      setInterval(() => {
-        localStorage.setItem("laguWaktu", audio.currentTime);
-      }, 1000);
-    } else {
-      console.warn("Belum ada lagu yang dipilih.");
+<script>
+  // Bintang
+  const starsContainer = document.getElementById("stars");
+  for (let i = 0; i < 150; i++) {
+    const star = document.createElement("div");
+    star.classList.add("star");
+    star.style.top = Math.random() * 100 + "%";
+    star.style.left = Math.random() * 100 + "%";
+    starsContainer.appendChild(star);
+  }
+
+  // Animasi ketik otomatis
+  const teks = "Pilih lagu favoritmu untuk menemani perjalanan antar bintang ✨";
+  let i = 0;
+  function ketik() {
+    if (i < teks.length) {
+      document.getElementById("type-text").textContent += teks.charAt(i);
+      i++;
+      setTimeout(ketik, 50);
     }
+  }
+  ketik();
 
-    window.addEventListener("beforeunload", () => {
-      localStorage.setItem("laguWaktu", audio.currentTime);
-    });
-  </script>
+  // Ambil nama dari URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const nama = urlParams.get("nama");
+
+  // Emoji saat pilih lagu
+  function showEmoji() {
+    const emojiList = ["🎵", "🎧", "💖", "🚀", "🌌"];
+    const span = document.createElement("span");
+    span.className = "emoji-float";
+    span.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
+    span.style.left = Math.random() * 90 + "%";
+    span.style.top = "50%";
+    document.body.appendChild(span);
+    setTimeout(() => span.remove(), 2000);
+  }
+
+  // Fungsi lanjut
+  function lanjut() {
+    const lagu = document.getElementById("laguSelect").value;
+    localStorage.setItem("laguDipilih", lagu);
+    localStorage.removeItem("laguWaktu"); // Reset waktu mulai
+
+    const next = `pesan.html?nama=${encodeURIComponent(nama || "")}`;
+
+    try {
+      const iframe = parent.document.getElementById("isi");
+      if (iframe) {
+        iframe.src = next;
+      } else {
+        window.location.href = next;
+      }
+    } catch (e) {
+      window.location.href = next;
+    }
+  }
+</script>
+
 </body>
 </html>
