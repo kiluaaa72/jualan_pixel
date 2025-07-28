@@ -15,41 +15,38 @@
     <button onclick="location.href='pesan.html'">Mulai 🚀</button>
   </main>
 
-  <script>
-    // Bintang acak
-    const starsContainer = document.querySelector('.stars');
-    for (let i = 0; i < 120; i++) {
-      const star = document.createElement('div');
-      star.classList.add('star');
-      star.style.top = Math.random() * 100 + 'vh';
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.animationDuration = (1 + Math.random() * 2.5) + 's';
-      starsContainer.appendChild(star);
-    }
+ <script>
+  // Tambahkan bintang
+  const starsContainer = document.querySelector('.stars');
+  for (let i = 0; i < 150; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.top = Math.random() * 100 + 'vh';
+    star.style.left = Math.random() * 100 + 'vw';
+    star.style.animationDuration = (1 + Math.random() * 2.5) + 's';
+    starsContainer.appendChild(star);
+  }
 
-    // Komet animasi dari berbagai arah
-    function createComet() {
-      const comet = document.createElement('div');
-      comet.classList.add('comet');
+  // Komet dari berbagai arah
+  function createComet() {
+    const comet = document.createElement('div');
+    comet.classList.add('comet');
 
-      const direction = [
-        { dx: 400, dy: 200 },
-        { dx: -400, dy: 200 },
-        { dx: -400, dy: -200 },
-        { dx: 400, dy: -200 },
-      ][Math.floor(Math.random() * 4)];
+    const dx = (Math.random() - 0.5) * 800;
+    const dy = (Math.random() - 0.5) * 800;
 
-      comet.style.top = Math.random() * window.innerHeight + 'px';
-      comet.style.left = Math.random() * window.innerWidth + 'px';
-      comet.style.setProperty('--tx', `${direction.dx}px`);
-      comet.style.setProperty('--ty', `${direction.dy}px`);
-      comet.style.animation = `fly 2.2s ease-out forwards`;
+    comet.style.setProperty('--tx', `${dx}px`);
+    comet.style.setProperty('--ty', `${dy}px`);
 
-      document.body.appendChild(comet);
-      setTimeout(() => comet.remove(), 2500);
-    }
+    comet.style.top = Math.random() * window.innerHeight + 'px';
+    comet.style.left = Math.random() * window.innerWidth + 'px';
 
-    setInterval(createComet, 5000);
-  </script>
+    document.body.appendChild(comet);
+    setTimeout(() => comet.remove(), 2200);
+  }
+
+  setInterval(createComet, 4000);
+</script>
+
 </body>
 </html>
