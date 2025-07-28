@@ -1,0 +1,55 @@
+/* Form Section */
+.form-section {
+  text-align: center;
+  padding: 4rem 1rem;
+  z-index: 10;
+  position: relative;
+}
+.space-form {
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.space-form input, .space-form textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+.space-form input:focus, .space-form textarea:focus {
+  box-shadow: 0 0 10px #00f7ff;
+}
+
+/* Galeri Foto */
+.gallery-section {
+  padding: 4rem 1rem;
+  text-align: center;
+  z-index: 10;
+  position: relative;
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+.gallery img {
+  width: 200px;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+.gallery img:hover {
+  transform: scale(1.1);
+}
+
+/* Closing Section */
+.closing-section {
+  padding: 4rem 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
