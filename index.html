@@ -61,20 +61,23 @@
     }
     setInterval(createComet, 2000);
 
-    // Astronaut muter dan keliling
-    const astronaut = document.getElementById("astro");
-    function moveAstronaut() {
-      const screenW = window.innerWidth;
-      const screenH = window.innerHeight;
+ // Astronaut muter dan keliling bebas layar
+const astronaut = document.getElementById("astro");
 
-      const randX = Math.random() * (screenW - 120);
-      const randY = Math.random() * (screenH - 120);
+function moveAstronaut() {
+  const screenW = window.innerWidth;
+  const screenH = window.innerHeight;
 
-      astronaut.style.transition = 'transform 3s ease-in-out';
-      astronaut.style.transform = `translate(${randX}px, ${randY}px) rotate(${Math.random() * 360}deg)`;
-    }
-    setInterval(moveAstronaut, 3000);
-    moveAstronaut(); // panggil awal
+  const randX = Math.random() * (screenW - 120);
+  const randY = Math.random() * (screenH - 120);
+  const rotateDeg = Math.random() * 360;
+
+  astronaut.style.transform = `translate(${randX}px, ${randY}px) rotate(${rotateDeg}deg)`;
+}
+
+setInterval(moveAstronaut, 3000);
+moveAstronaut(); // langsung muncul
+
   </script>
 </body>
 </html>
