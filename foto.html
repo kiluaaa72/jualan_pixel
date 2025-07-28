@@ -102,6 +102,7 @@
 <body>
   <div class="stars" id="stars"></div>
   <img src="astronaut-cute.gif" alt="Astronaut lucu melayang" class="astronaut" id="astro" />
+
   <main>
     <h2 style="text-align: center; color: cyan;">🌌 Galeri Kenangan Kita</h2>
     <p class="quote">"Setiap foto punya cerita, dan cerita kita selalu bersinar di antara bintang-bintang."</p>
@@ -127,8 +128,6 @@
     <img id="modalImg" src="" alt="Zoom Foto">
   </div>
 
-  <audio id="bgMusic" loop></audio>
-  
   <script>
     // Bintang
     const starsContainer = document.getElementById("stars");
@@ -178,27 +177,6 @@
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") tutupModal();
     });
-
-      document.addEventListener("DOMContentLoaded", () => {
-    const audio = document.getElementById("bgMusic");
-    const lagu = localStorage.getItem("laguDipilih");
-    
-    if (lagu) {
-      audio.src = lagu;
-      audio.play().catch(e => {
-        console.log("Autoplay blocked, waiting for interaction");
-      });
-    }
-
-    // Tombol play manual (opsional)
-    const playBtn = document.createElement("button");
-    playBtn.textContent = "🔊";
-    playBtn.style.position = "fixed";
-    playBtn.style.bottom = "20px";
-    playBtn.style.right = "20px";
-    playBtn.onclick = () => audio.play();
-    document.body.appendChild(playBtn);
-  });
   </script>
 </body>
 </html>

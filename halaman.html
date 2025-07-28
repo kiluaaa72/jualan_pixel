@@ -13,7 +13,7 @@
   <!-- Astronaut (melayang & muter) -->
   <img src="astronaut-cute.gif" alt="Astronaut lucu melayang" class="astronaut" id="astro" />
 
-  <audio id="bgMusic" loop></audio>
+
   <!-- Konten utama -->
   <main>
     <div class="text-group">
@@ -81,26 +81,6 @@
       setInterval(moveAstronaut, 3000); // gerak terus
     }, 1500); // delay 1.5 detik
 
-      document.addEventListener("DOMContentLoaded", () => {
-    const audio = document.getElementById("bgMusic");
-    const lagu = localStorage.getItem("laguDipilih");
-    
-    if (lagu) {
-      audio.src = lagu;
-      audio.play().catch(e => {
-        console.log("Autoplay blocked, waiting for interaction");
-      });
-    }
-
-    // Tombol play manual (opsional)
-    const playBtn = document.createElement("button");
-    playBtn.textContent = "🔊";
-    playBtn.style.position = "fixed";
-    playBtn.style.bottom = "20px";
-    playBtn.style.right = "20px";
-    playBtn.onclick = () => audio.play();
-    document.body.appendChild(playBtn);
-  });
  
 
 

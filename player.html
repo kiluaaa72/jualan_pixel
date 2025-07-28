@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Ucapan</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Pemutar lagu -->
+  <audio id="bgm" autoplay loop hidden></audio>
+
+  <!-- Iframe konten -->
+  <iframe id="isi" src="index.html"></iframe>
+
+  <script>
+    const audio = document.getElementById("bgm");
+    const lagu = localStorage.getItem("laguDipilih");
+    const waktu = localStorage.getItem("laguWaktu");
+
+    if (lagu) {
+      audio.src = lagu;
+      audio.load();
+
+      audio.addEventListener("loadedmetadata", () => {
+        if (waktu) {
+          audio.currentTime = parseFloat(waktu);
+        }
+        audio.play().catch((err) => {
+          console.warn("Autoplay gagal, butuh interaksi:", err);
+        });
+      });
+
+      setInterval(() => {
+        localStorage.setItem("laguWaktu", audio.currentTime);
+      }, 1000);
+    } else {
+      console.warn("Belum ada lagu yang dipilih.");
+    }
+
+    window.addEventListener("beforeunload", () => {
+      localStorage.setItem("laguWaktu", audio.currentTime);
+    });
+  </script>
+</body>
+</html>

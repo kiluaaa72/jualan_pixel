@@ -56,7 +56,8 @@
   <!-- Astronaut -->
   <img src="astronaut-cute.gif" alt="Astronaut lucu melayang" class="astronaut" id="astro" />
 
-<audio id="bgMusic" loop></audio>
+
+
   <!-- Popup Pesan -->
   <div class="popup" id="popup">
     <div class="popup-content">
@@ -151,27 +152,7 @@ document.getElementById("popupMessage").innerHTML = pesanSpesial.replace(/\n/g, 
     function terimaPesan() {
       window.location.href = "foto.html"; // Redirect ke halaman foto
     }
-   // Putar musik saat halaman dimuat
-  document.addEventListener("DOMContentLoaded", () => {
-    const audio = document.getElementById("bgMusic");
-    const lagu = localStorage.getItem("laguDipilih");
-    
-    if (lagu) {
-      audio.src = lagu;
-      audio.play().catch(e => {
-        console.log("Autoplay blocked, waiting for interaction");
-      });
-    }
-
-    // Tombol play manual (opsional)
-    const playBtn = document.createElement("button");
-    playBtn.textContent = "🔊";
-    playBtn.style.position = "fixed";
-    playBtn.style.bottom = "20px";
-    playBtn.style.right = "20px";
-    playBtn.onclick = () => audio.play();
-    document.body.appendChild(playBtn);
-  });   
+     
 
 
   </script>
