@@ -1,0 +1,47 @@
+<!-- masuk.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Masuk ke Galaksi</title>
+  <link rel="stylesheet" href="space.css" />
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  <main>
+    <h1>🚀 Siapa Kamu?</h1>
+    <form onsubmit="masukGalaksi(event)">
+      <input type="text" id="nama" placeholder="Namamu..." required style="padding: 10px; border-radius: 10px; border: none;" />
+      <br/><br/>
+      <button type="submit">Masuk ke Galaksi 🌌</button>
+    </form>
+    <p id="peringatan" style="color: pink; margin-top: 1rem;"></p>
+  </main>
+
+  <script>
+    // Bintang animasi
+    const starsContainer = document.getElementById("stars");
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      star.style.top = Math.random() * 100 + "%";
+      star.style.left = Math.random() * 100 + "%";
+      starsContainer.appendChild(star);
+    }
+
+    // Validasi nama = Jenny
+    function masukGalaksi(e) {
+      e.preventDefault();
+      const nama = document.getElementById("nama").value.trim();
+      const peringatan = document.getElementById("peringatan");
+
+      if (nama.toLowerCase() === "jenny") {
+        window.location.href = `pilihlagu.html?nama=${encodeURIComponent(nama)}`;
+      } else {
+        peringatan.textContent = `❌ Maaf, hanya Jenny yang boleh masuk ke galaksi ini.`;
+      }
+    }
+  </script>
+</body>
+</html>
