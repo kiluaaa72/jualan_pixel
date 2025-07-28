@@ -146,16 +146,18 @@
       setTimeout(() => span.remove(), 2000);
     }
 
-    function lanjut() {
-      const lagu = document.getElementById("laguSelect").value;
-      localStorage.setItem("laguDipilih", lagu);
-      if (nama) {
-        window.location.href = `halaman.html?nama=${encodeURIComponent(nama)}`;
-      } else {
-        alert("Nama tidak ditemukan. Silakan isi ulang dari awal.");
-        window.location.href = "index.html";
-      }
-    }
+function lanjut() {
+  const lagu = document.getElementById("laguSelect").value;
+  localStorage.setItem("laguDipilih", lagu);
+  localStorage.removeItem("laguWaktu"); // reset waktu mulai
+
+  if (nama) {
+    parent.document.getElementById("isi").src = `halaman.html?nama=${encodeURIComponent(nama)}`;
+  } else {
+    parent.document.getElementById("isi").src = "index.html";
+  }
+}
+
   </script>
 </body>
 </html>
