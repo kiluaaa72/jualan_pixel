@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Ucapan</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Pemutar lagu -->
+  <audio id="bgm" autoplay loop></audio>
+
+  <!-- Iframe konten -->
+  <iframe id="isi" src="index.html"></iframe>
+
+  <script>
+    const lagu = localStorage.getItem("laguDipilih") || "lagu1.mp3";
+    const waktu = localStorage.getItem("laguWaktu");
+    const audio = document.getElementById("bgm");
+
+    audio.src = lagu;
+    audio.addEventListener("loadedmetadata", () => {
+      if (waktu) audio.currentTime = parseFloat(waktu);
+      audio.play().catch(() => {});
+    });
+
+    // simpan posisi lagu tiap detik
+    setInterval(() => {
+      localStorage.setItem("laguWaktu", audio.currentTime);
+    }, 1000);
+  </script>
+</body>
+</html>
