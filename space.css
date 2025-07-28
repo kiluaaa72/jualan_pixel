@@ -15,6 +15,13 @@ body {
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  max-width: 90%;
+  text-align: center;
   text-align: center;
   z-index: 2;
 }
@@ -87,8 +94,8 @@ button:hover {
 .astronaut {
   position: absolute;
   width: 120px; /* bisa kamu ubah lebih kecil/besar */
-  top: 25%;
-  left: 75%;
+ left: 85%;
+top: 40%;
   transform: translate(-50%, -50%);
   animation: float-astro 6s ease-in-out infinite;
   z-index: 2; /* pastikan di atas bintang */
@@ -117,4 +124,12 @@ button:hover {
     opacity: 0;
   }
 }
+@media (max-width: 768px) {
+  .astronaut {
+    width: 80px;
+    top: 30%;
+    left: 80%;
+  }
+}
+
 
