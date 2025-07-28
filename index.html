@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -7,10 +8,9 @@
   <link rel="stylesheet" href="space.css" />
 </head>
 <body>
-  <!-- Bintang -->
   <div class="stars" id="stars"></div>
+  <div class="planet planet-1"></div>
 
-  <!-- Konten utama -->
   <main>
     <h1>🚀 Ucapan Luar Angkasa</h1>
     <p>Selamat datang di luar angkasa. Siap menjelajah pesan spesial?</p>
@@ -19,9 +19,7 @@
     </a>
   </main>
 
-  <!-- JavaScript animasi bintang & komet -->
   <script>
-    // Buat bintang acak
     const starsContainer = document.getElementById("stars");
     for (let i = 0; i < 150; i++) {
       const star = document.createElement("div");
@@ -32,7 +30,6 @@
       starsContainer.appendChild(star);
     }
 
-    // Bikin komet random dari berbagai arah
     function createComet() {
       const comet = document.createElement("div");
       comet.classList.add("comet");
@@ -51,13 +48,10 @@
       comet.style.setProperty('--ty', `${ty}px`);
 
       document.body.appendChild(comet);
-
-      setTimeout(() => {
-        comet.remove();
-      }, 2000);
+      setTimeout(() => comet.remove(), 2000);
     }
 
-    setInterval(createComet, 2000); // munculkan komet setiap 2 detik
+    setInterval(createComet, 2000);
   </script>
 </body>
 </html>
