@@ -56,7 +56,6 @@
   <!-- Astronaut -->
   <img src="astronaut-cute.gif" alt="Astronaut lucu melayang" class="astronaut" id="astro" />
 
-  <audio id="bgm" autoplay loop hidden></audio>
 
 
   <!-- Popup Pesan -->
@@ -153,29 +152,7 @@ document.getElementById("popupMessage").innerHTML = pesanSpesial.replace(/\n/g, 
     function terimaPesan() {
       window.location.href = "foto.html"; // Redirect ke halaman foto
     }
-      // Ambil lagu dari localStorage dan mainkan
-const audio = document.getElementById("bgm");
-const lagu = localStorage.getItem("laguDipilih");
-const waktu = localStorage.getItem("laguWaktu");
-
-if (lagu) {
-  audio.src = lagu;
-
-  // Setelah metadata dimuat, baru atur waktu & play
-  audio.addEventListener("loadedmetadata", () => {
-    if (waktu) {
-      audio.currentTime = parseFloat(waktu);
-    }
-    audio.play().catch(() => {
-      console.log("Autoplay diblokir.");
-    });
-  });
-
-  // Update posisi lagu setiap detik
-  setInterval(() => {
-    localStorage.setItem("laguWaktu", audio.currentTime);
-  }, 1000);
-}
+     
 
 
   </script>
