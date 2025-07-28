@@ -9,55 +9,40 @@ body {
   overflow: hidden;
 }
 
-header {
+main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  padding-top: 1rem;
+  z-index: 2;
 }
 
 h1 {
+  font-size: 2.5rem;
   color: cyan;
-  text-shadow: 0 0 10px cyan;
+  text-shadow: 0 0 15px cyan;
 }
 
-nav a {
-  margin: 0 10px;
+p {
+  font-size: 1.2rem;
   color: white;
-  text-decoration: none;
-  font-size: 1rem;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-  text-align: center;
-}
-
-h2 {
-  font-size: 1.8rem;
-  color: gold;
-  text-shadow: 0 0 10px orange;
-  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 button {
-  margin-top: 1rem;
-  background-color: aqua;
-  color: black;
+  margin-top: 2rem;
+  background-color: #00ffee;
+  color: #000;
   border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 1rem;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 1.1rem;
   cursor: pointer;
+  transition: 0.3s;
 }
-
-footer {
-  text-align: center;
-  font-size: 0.8rem;
-  color: #ccc;
-  padding: 1rem;
+button:hover {
+  background-color: #00cfcf;
 }
 
 .stars {
@@ -76,12 +61,12 @@ footer {
   height: 2px;
   background: white;
   border-radius: 50%;
-  opacity: 0.8;
+  opacity: 0.6;
   animation: twinkle 2s infinite ease-in-out;
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.2; }
+  0%, 100% { opacity: 0.1; }
   50% { opacity: 1; }
 }
 
@@ -93,6 +78,7 @@ footer {
   opacity: 0.8;
   z-index: 1;
   pointer-events: none;
+  animation: fly 2s linear forwards;
 }
 
 @keyframes fly {
