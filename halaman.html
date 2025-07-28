@@ -13,8 +13,6 @@
   <!-- Astronaut (melayang & muter) -->
   <img src="astronaut-cute.gif" alt="Astronaut lucu melayang" class="astronaut" id="astro" />
 
-  <!-- Musik -->
-  <audio id="bgm" autoplay loop hidden></audio>
 
   <!-- Konten utama -->
   <main>
@@ -83,29 +81,7 @@
       setInterval(moveAstronaut, 3000); // gerak terus
     }, 1500); // delay 1.5 detik
 
-    // Putar lagu dari localStorage
-const audio = document.getElementById("bgm");
-const lagu = localStorage.getItem("laguDipilih");
-const waktu = localStorage.getItem("laguWaktu");
-
-if (lagu) {
-  audio.src = lagu;
-
-  // Setelah metadata dimuat, baru atur waktu & play
-  audio.addEventListener("loadedmetadata", () => {
-    if (waktu) {
-      audio.currentTime = parseFloat(waktu);
-    }
-    audio.play().catch(() => {
-      console.log("Autoplay diblokir.");
-    });
-  });
-
-  // Update posisi lagu setiap detik
-  setInterval(() => {
-    localStorage.setItem("laguWaktu", audio.currentTime);
-  }, 1000);
-}
+ 
 
 
 
