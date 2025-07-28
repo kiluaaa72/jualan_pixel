@@ -1,26 +1,114 @@
-<!-- pilihlagu.html -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pilih Lagu</title>
+  <title>Pilih Lagu Favorit</title>
   <link rel="stylesheet" href="space.css" />
+  <style>
+    .container {
+      text-align: center;
+      padding: 2rem;
+      z-index: 2;
+      position: relative;
+    }
+
+    .emoji-float {
+      position: absolute;
+      font-size: 2rem;
+      animation: floatUp 2s ease-out forwards;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+    }
+
+    .lagu-box {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 20px;
+      display: inline-block;
+      margin-top: 2rem;
+      box-shadow: 0 0 20px cyan;
+    }
+
+    select {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: none;
+      background-color: #00ffee;
+      color: black;
+      cursor: pointer;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: cyan;
+      color: black;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #00bbbb;
+    }
+
+    .astro-icon {
+      width: 120px;
+      margin-top: 2rem;
+      animation: swing 3s ease-in-out infinite;
+    }
+
+    @keyframes swing {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(10deg); }
+    }
+
+    #type-text {
+      font-size: 1.2rem;
+      color: white;
+      margin-top: 1rem;
+      height: 1.5rem;
+    }
+  </style>
 </head>
 <body>
   <div class="stars" id="stars"></div>
-  <main>
-    <h1>🎵 Pilih Lagu Favoritmu</h1>
-    <select id="laguSelect" style="padding: 10px; border-radius: 10px; font-size: 1rem;">
-      <option value="lagu1.mp3">Lagu Luar Angkasa 1</option>
-      <option value="lagu2.mp3">Lagu Luar Angkasa 2</option>
-      <option value="lagu3.mp3">Lagu Luar Angkasa 3</option>
-    </select>
-    <br/><br/>
-    <button onclick="lanjut()">Lanjut ke Ucapan 🚀</button>
+
+  <main class="container">
+    <h1 style="color: cyan;">🎶 Pilih Lagu Galaksi</h1>
+    <p id="type-text"></p>
+
+    <div class="lagu-box">
+      <select id="laguSelect" onchange="showEmoji()">
+        <option value="lagu1.mp3">💫 Lagu Galaksi 1</option>
+        <option value="lagu2.mp3">🌙 Lagu Malam 2</option>
+        <option value="lagu3.mp3">🚀 Lagu Roket 3</option>
+      </select>
+      <br/>
+      <button onclick="lanjut()">Lanjutkan 🚀</button>
+    </div>
+
+    <img src="astronaut-cute.gif" class="astro-icon" alt="Astro Lucu" />
   </main>
 
   <script>
+    // bintang
     const starsContainer = document.getElementById("stars");
     for (let i = 0; i < 150; i++) {
       const star = document.createElement("div");
@@ -30,14 +118,43 @@
       starsContainer.appendChild(star);
     }
 
+    // animasi ketik otomatis
+    const teks = "Pilih lagu favoritmu untuk menemani perjalanan antar bintang ✨";
+    let i = 0;
+    function ketik() {
+      if (i < teks.length) {
+        document.getElementById("type-text").textContent += teks.charAt(i);
+        i++;
+        setTimeout(ketik, 50);
+      }
+    }
+    ketik();
+
+    // ambil nama dari URL
     const urlParams = new URLSearchParams(window.location.search);
     const nama = urlParams.get('nama');
+
+    // emoji saat pilih lagu
+    function showEmoji() {
+      const emojiList = ["🎵", "🎧", "💖", "🚀", "🌌"];
+      const span = document.createElement("span");
+      span.className = "emoji-float";
+      span.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
+      span.style.left = Math.random() * 90 + "%";
+      span.style.top = "50%";
+      document.body.appendChild(span);
+      setTimeout(() => span.remove(), 2000);
+    }
 
     function lanjut() {
       const lagu = document.getElementById("laguSelect").value;
       localStorage.setItem("laguDipilih", lagu);
-      window.location.href = `halaman.html?nama=${encodeURIComponent(nama)}`;
-
+      if (nama) {
+        window.location.href = `halaman.html?nama=${encodeURIComponent(nama)}`;
+      } else {
+        alert("Nama tidak ditemukan. Silakan isi ulang dari awal.");
+        window.location.href = "index.html";
+      }
     }
   </script>
 </body>
