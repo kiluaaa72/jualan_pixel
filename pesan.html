@@ -154,14 +154,28 @@ document.getElementById("popupMessage").innerHTML = pesanSpesial.replace(/\n/g, 
       window.location.href = "foto.html"; // Redirect ke halaman foto
     }
       // Ambil lagu dari localStorage dan mainkan
-  const lagu = localStorage.getItem("laguDipilih");
-  if (lagu) {
-    const audio = document.getElementById("bgm");
-    audio.src = lagu;
-    audio.play().catch(() => {
-      console.log("Autoplay diblokir. Pengguna perlu interaksi dulu.");
-    });
+const audio = document.getElementById("bgm");
+const lagu = localStorage.getItem("laguDipilih");
+const waktu = localStorage.getItem("laguWaktu");
+
+if (lagu) {
+  audio.src = lagu;
+
+  // Set waktu terakhir jika ada
+  if (waktu) {
+    audio.currentTime = parseFloat(waktu);
   }
+
+  audio.play().catch(() => {
+    console.log("Autoplay diblokir.");
+  });
+
+  // Update posisi setiap 1 detik
+  setInterval(() => {
+    localStorage.setItem("laguWaktu", audio.currentTime);
+  }, 1000);
+}
+
   </script>
 </body>
 </html>
