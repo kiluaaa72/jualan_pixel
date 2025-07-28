@@ -1,0 +1,43 @@
+<!-- pilihlagu.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pilih Lagu</title>
+  <link rel="stylesheet" href="space.css" />
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  <main>
+    <h1>🎵 Pilih Lagu Favoritmu</h1>
+    <select id="laguSelect" style="padding: 10px; border-radius: 10px; font-size: 1rem;">
+      <option value="lagu1.mp3">Lagu Luar Angkasa 1</option>
+      <option value="lagu2.mp3">Lagu Luar Angkasa 2</option>
+      <option value="lagu3.mp3">Lagu Luar Angkasa 3</option>
+    </select>
+    <br/><br/>
+    <button onclick="lanjut()">Lanjut ke Ucapan 🚀</button>
+  </main>
+
+  <script>
+    const starsContainer = document.getElementById("stars");
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      star.style.top = Math.random() * 100 + "%";
+      star.style.left = Math.random() * 100 + "%";
+      starsContainer.appendChild(star);
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const nama = urlParams.get('nama');
+
+    function lanjut() {
+      const lagu = document.getElementById("laguSelect").value;
+      localStorage.setItem("laguDipilih", lagu);
+      window.location.href = `index.html?nama=${encodeURIComponent(nama)}`;
+    }
+  </script>
+</body>
+</html>
