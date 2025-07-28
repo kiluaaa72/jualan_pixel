@@ -1,88 +1,90 @@
-/* Reset & body */
-* {
+@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: 'Comic Neue', cursive;
-  background: radial-gradient(ellipse at bottom, #0d1a3a 0%, #050816 100%);
-  color: #fff;
-  text-align: center;
-  height: 100vh;
+  font-family: 'Chewy', cursive;
+  background: linear-gradient(to bottom, #0d0d1a, #0c1835);
+  color: white;
   overflow: hidden;
-  position: relative;
 }
 
-/* Header */
 header {
-  padding: 20px;
+  text-align: center;
+  padding-top: 1rem;
 }
-header h1 {
-  font-size: 2rem;
-  color: #00ffe5;
-  text-shadow: 0 0 5px #00ffe5, 0 0 20px #00ffe5;
+
+h1 {
+  color: cyan;
+  text-shadow: 0 0 10px cyan;
 }
+
 nav a {
   margin: 0 10px;
-  color: #fff;
+  color: white;
   text-decoration: none;
   font-size: 1rem;
 }
-nav a:hover {
-  color: #ffcc00;
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  text-align: center;
 }
 
-/* Main */
-main h2 {
-  margin-top: 30px;
-  font-size: 1.5rem;
-  color: #ffcc00;
-  text-shadow: 0 0 10px #ffcc00;
+h2 {
+  font-size: 1.8rem;
+  color: gold;
+  text-shadow: 0 0 10px orange;
+  margin-bottom: 0.5rem;
 }
-main p {
-  margin: 10px 0 20px;
-}
+
 button {
-  padding: 10px 20px;
-  background: #00ffe5;
-  color: #000;
+  margin-top: 1rem;
+  background-color: aqua;
+  color: black;
   border: none;
+  padding: 10px 20px;
   border-radius: 20px;
+  font-size: 1rem;
   cursor: pointer;
 }
 
-/* Footer */
 footer {
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
+  text-align: center;
   font-size: 0.8rem;
-  color: #aaa;
+  color: #ccc;
+  padding: 1rem;
 }
 
-/* Bintang */
 .stars {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }
+
 .star {
   position: absolute;
   width: 2px;
   height: 2px;
   background: white;
   border-radius: 50%;
-  opacity: 0.6;
-  animation: twinkle 2s infinite alternate ease-in-out;
-}
-@keyframes twinkle {
-  from { opacity: 0.1; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1.2); }
+  opacity: 0.8;
+  animation: twinkle 2s infinite ease-in-out;
 }
 
-/* Komet */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
 .comet {
   position: absolute;
   width: 100px;
@@ -92,8 +94,17 @@ footer {
   z-index: 1;
   pointer-events: none;
 }
+
 @keyframes fly {
-  0% { transform: translate(0, 0); opacity: 0; }
-  10% { opacity: 1; }
-  100% { transform: translate(var(--tx), var(--ty)); opacity: 0; }
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty));
+    opacity: 0;
+  }
 }
