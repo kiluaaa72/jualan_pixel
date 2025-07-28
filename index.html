@@ -51,6 +51,25 @@
     }
 
     setInterval(createComet, 2000);
+
+    <script>
+  const astronaut = document.querySelector('.astronaut');
+
+  function moveAstronaut() {
+    const screenW = window.innerWidth;
+    const screenH = window.innerHeight;
+
+    const randX = Math.random() * (screenW - 120); // kurangi lebar astronaut
+    const randY = Math.random() * (screenH - 120);
+
+    astronaut.style.transition = 'transform 3s ease-in-out';
+    astronaut.style.transform = `translate(${randX}px, ${randY}px) rotate(${Math.random() * 360}deg)`;
+  }
+
+  setInterval(moveAstronaut, 3000); // pindah setiap 3 detik
+  moveAstronaut(); // panggil sekali saat awal
+</script>
+
   </script>
   <img src="astronaut-cute.gif" alt="Astronaut lucu melayang" class="astronaut">
 
