@@ -84,6 +84,26 @@ button:hover {
   animation: fly 2s linear forwards;
 }
 
+.astronaut {
+  position: absolute;
+  width: 120px; /* bisa kamu ubah lebih kecil/besar */
+  top: 25%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  animation: float-astro 6s ease-in-out infinite;
+  z-index: 2; /* pastikan di atas bintang */
+  pointer-events: none;
+}
+
+@keyframes float-astro {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-20px);
+  }
+}
+
 @keyframes fly {
   0% {
     transform: translate(0, 0);
