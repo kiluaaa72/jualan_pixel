@@ -84,14 +84,28 @@
     }, 1500); // delay 1.5 detik
 
     // Putar lagu dari localStorage
-    const lagu = localStorage.getItem("laguDipilih");
-    if (lagu) {
-      const audio = document.getElementById("bgm");
-      audio.src = lagu;
-      audio.play().catch(() => {
-        console.log("Autoplay diblokir. Tunggu interaksi user.");
-      });
-    }
+   const audio = document.getElementById("bgm");
+const lagu = localStorage.getItem("laguDipilih");
+const waktu = localStorage.getItem("laguWaktu");
+
+if (lagu) {
+  audio.src = lagu;
+
+  // Set waktu terakhir jika ada
+  if (waktu) {
+    audio.currentTime = parseFloat(waktu);
+  }
+
+  audio.play().catch(() => {
+    console.log("Autoplay diblokir.");
+  });
+
+  // Update posisi setiap 1 detik
+  setInterval(() => {
+    localStorage.setItem("laguWaktu", audio.currentTime);
+  }, 1000);
+}
+
   </script>
 </body>
 </html>
