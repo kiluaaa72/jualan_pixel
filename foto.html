@@ -1,70 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galeri Foto</title>
-  <link rel="stylesheet" href="space.css">
-  <script defer src="space.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galeri Kenangan</title>
+  <link rel="stylesheet" href="space.css" />
   <style>
-    body {
-      background: linear-gradient(to bottom, #0d0d1a, #0c1835);
-      color: white;
-      font-family: 'Chewy', cursive;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-
-    .stars {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .astronaut {
-      position: absolute;
-      width: 120px;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    header, footer {
-      background-color: rgba(0, 0, 50, 0.6);
-      padding: 1rem;
-      text-align: center;
-      backdrop-filter: blur(4px);
-      z-index: 2;
-      position: relative;
-    }
-
-    nav a {
-      margin: 0 15px;
-      color: cyan;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      color: magenta;
-    }
-
-    main {
-      text-align: center;
-      padding: 2rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    h2 {
-      color: cyan;
-      text-shadow: 0 0 10px cyan;
-    }
-
     .galeri {
       display: flex;
       flex-wrap: wrap;
@@ -77,42 +18,170 @@
       width: 250px;
       border-radius: 20px;
       box-shadow: 0 0 20px cyan;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    .galeri img:nth-child(1) { animation-delay: 0.2s; }
+    .galeri img:nth-child(2) { animation-delay: 0.4s; }
+    .galeri img:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .quote {
+      font-style: italic;
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    .back-button {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .back-button a button {
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      background-color: cyan;
+      color: #000;
+      transition: background-color 0.3s;
+    }
+
+    .back-button a button:hover {
+      background-color: #00bbbb;
+    }
+
+    /* Zoom Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,30,0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 20px;
+      box-shadow: 0 0 30px cyan;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: cyan;
       cursor: pointer;
     }
 
-    .galeri img:hover {
-      transform: scale(1.05) rotate(1deg);
-      box-shadow: 0 0 25px magenta;
-    }
-
-    footer {
-      margin-top: 2rem;
+    .modal-close:hover {
+      color: magenta;
     }
   </style>
 </head>
 <body>
-
-  <!-- Bintang -->
   <div class="stars" id="stars"></div>
-
-  <!-- Astronaut -->
   <img src="astronaut-cute.gif" alt="Astronaut lucu melayang" class="astronaut" id="astro" />
-
-  <header>
-  </header>
+  <audio id="bgm" autoplay loop hidden></audio>
 
   <main>
-    <h2>Galeri Luar Angkasa</h2>
+    <h2 style="text-align: center; color: cyan;">🌌 Galeri Kenangan Kita</h2>
+    <p class="quote">"Setiap foto punya cerita, dan cerita kita selalu bersinar di antara bintang-bintang."</p>
+
     <div class="galeri">
       <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=60" alt="Galaxy">
       <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=800&q=60" alt="Planet">
       <img src="https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=800&q=60" alt="Stars">
     </div>
+
+    <div class="back-button">
+      <a href="index.html">
+        <button>🔁 Ulang dari Awal</button>
+      </a>
+    </div>
   </main>
 
-  <footer>
-  </footer>
+  <!-- Modal Zoom -->
+  <div class="modal" id="zoomModal">
+    <span class="modal-close" onclick="tutupModal()">×</span>
+    <img id="modalImg" src="" alt="Zoom Foto">
+  </div>
 
+  <script>
+    // Bintang
+    const starsContainer = document.getElementById("stars");
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      star.style.top = Math.random() * 100 + "%";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.animationDuration = 1 + Math.random() * 3 + "s";
+      starsContainer.appendChild(star);
+    }
+
+    // Astronaut bergerak muter
+    const astronaut = document.getElementById("astro");
+    function moveAstronaut() {
+      const screenW = window.innerWidth;
+      const screenH = window.innerHeight;
+      const randX = Math.random() * (screenW - 120);
+      const randY = Math.random() * (screenH - 120);
+      const rotateDeg = Math.random() * 360;
+      astronaut.style.transform = `translate(${randX}px, ${randY}px) rotate(${rotateDeg}deg)`;
+    }
+    setTimeout(() => {
+      astronaut.classList.add("show");
+      moveAstronaut();
+      setInterval(moveAstronaut, 3000);
+    }, 1500);
+
+    // Musik dari localStorage
+    const lagu = localStorage.getItem("laguDipilih");
+    if (lagu) {
+      const audio = document.getElementById("bgm");
+      audio.src = lagu;
+      audio.play().catch(() => console.log("Autoplay diblokir"));
+    }
+
+    // Zoom Modal
+    const modal = document.getElementById("zoomModal");
+    const modalImg = document.getElementById("modalImg");
+
+    document.querySelectorAll(".galeri img").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "flex";
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+      });
+    });
+
+    function tutupModal() {
+      modal.style.display = "none";
+    }
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") tutupModal();
+    });
+  </script>
 </body>
 </html>
