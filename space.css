@@ -1,128 +1,146 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'Orbitron', sans-serif;
-    background: linear-gradient(to bottom, #0b0c10, #1f2833);
-    color: #ffffff;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Orbitron', sans-serif;
 }
 
-/* Background Stars Layer */
-.stars {
-    position: fixed;
-    width: 200%;
-    height: 200%;
-    background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-    animation: moveStars 120s linear infinite;
-    z-index: -2;
-    opacity: 0.3;
+body {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  color: #fff;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
-@keyframes moveStars {
-    from { transform: translate(0, 0); }
-    to { transform: translate(-500px, -500px); }
-}
-
-/* Cute Planet */
-.planet {
-    position: absolute;
-    bottom: 50px;
-    left: 50px;
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle at 30% 30%, #ff9a9e, #fad0c4);
-    border-radius: 50%;
-    animation: floatPlanet 6s ease-in-out infinite;
-    z-index: -1;
-}
-
-@keyframes floatPlanet {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
-/* Comet */
-.comet {
-    position: absolute;
-    top: -50px;
-    right: -100px;
-    width: 150px;
-    height: 2px;
-    background: linear-gradient(to right, #fff, transparent);
-    transform: rotate(-45deg);
-    animation: cometFly 10s linear infinite;
-    z-index: -1;
-}
-
-@keyframes cometFly {
-    0% { transform: translate(0, 0) rotate(-45deg); opacity: 0; }
-    20% { opacity: 1; }
-    100% { transform: translate(-1200px, 800px) rotate(-45deg); opacity: 0; }
-}
-
-/* Header */
+/* HEADER */
 header {
-    text-align: center;
-    padding: 20px;
+  padding: 20px;
 }
+
 header h1 {
-    font-size: 2rem;
-    color: #66fcf1;
-    text-shadow: 0 0 8px #45a29e;
-    animation: rocketShake 2s ease-in-out infinite;
+  font-size: 2rem;
+  color: #00f6ff;
+  text-shadow: 0 0 10px #00f6ff, 0 0 20px #00f6ff;
 }
 
-@keyframes rocketShake {
-    0%, 100% { transform: rotate(0); }
-    50% { transform: rotate(2deg); }
-}
-
-/* Navigation */
 nav a {
-    color: #c5c6c7;
-    margin: 0 10px;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-nav a:hover {
-    color: #66fcf1;
+  margin: 0 10px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
 }
 
-/* Main Section */
-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+nav a:hover {
+  color: #00f6ff;
+}
+
+/* MAIN */
+main h2 {
+  margin: 20px 0 10px;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+main p {
+  margin-bottom: 20px;
+  color: #ddd;
 }
 
 button {
-    background: #45a29e;
-    border: none;
-    color: #fff;
-    padding: 12px 25px;
-    border-radius: 25px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 20px;
-}
-button:hover {
-    background: #66fcf1;
-    color: #0b0c10;
+  padding: 10px 20px;
+  border: none;
+  background: #00f6ff;
+  color: #000;
+  font-size: 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
 }
 
-/* Footer */
+button:hover {
+  background: #00cfff;
+  transform: scale(1.1);
+}
+
+/* FOOTER */
 footer {
-    padding: 15px;
-    text-align: center;
-    font-size: 0.9rem;
-    background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+/* STARS BACKGROUND */
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  top: 0;
+  left: 0;
+  z-index: -3;
+}
+
+.stars::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  box-shadow:
+    100px 200px #fff,
+    150px 80px #fff,
+    200px 300px #fff,
+    250px 100px #fff,
+    300px 200px #fff,
+    350px 50px #fff,
+    400px 150px #fff,
+    450px 250px #fff;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.3; }
+  to { opacity: 1; }
+}
+
+/* PLANET */
+.planet {
+  position: absolute;
+  bottom: 50px;
+  left: 20px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle at 30% 30%, #ff7f50, #e63946);
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(255, 127, 80, 0.8);
+  animation: float 6s ease-in-out infinite;
+  z-index: -2;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* COMET */
+.comet {
+  position: absolute;
+  top: 50px;
+  right: -100px;
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(90deg, white, transparent);
+  transform: rotate(-45deg);
+  animation: cometMove 5s linear infinite;
+  z-index: -2;
+}
+
+@keyframes cometMove {
+  0% { right: -150px; top: 50px; opacity: 1; }
+  100% { right: 120%; top: -200px; opacity: 0; }
 }
