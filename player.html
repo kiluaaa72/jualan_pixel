@@ -24,6 +24,12 @@
   <iframe id="isi" src="index.html"></iframe>
 
   <script>
+  window.addEventListener("beforeunload", () => {
+    localStorage.setItem("laguWaktu", audio.currentTime);
+  });
+</script>
+
+  <script>
     const lagu = localStorage.getItem("laguDipilih") || "lagu1.mp3";
     const waktu = localStorage.getItem("laguWaktu");
     const audio = document.getElementById("bgm");
