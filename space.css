@@ -147,3 +147,24 @@ button {
   animation-fill-mode: forwards, none;
   animation-iteration-count: 1, infinite;
 }
+.text-group > * {
+  opacity: 0;
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.text-group h1 {
+  animation-delay: 0s;
+}
+
+.text-group p {
+  animation-delay: 0.3s;
+}
+
+.text-group button {
+  animation-delay: 0.6s;
+}
+
+/* Animasi mengambang terpisah agar tidak bentrok */
+.text-group {
+  animation: floatText 4s ease-in-out infinite;
+}
