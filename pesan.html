@@ -62,7 +62,7 @@
       <h2>🚀 Pesan Dari Galaksi</h2>
       <p id="popupMessage">...</p>
       <div class="buttons">
-        <button onclick="tutupPopup()">Terima 🌟</button>
+        <button onclick="terimaPesan()">Terima 🌟</button>
         <button onclick="munculkanEmoji('🤗')">Peluk Jauh 🤗</button>
         <button onclick="munculkanEmoji('❤️')">Love ❤️</button>
       </div>
@@ -124,10 +124,6 @@
     const pesanSpesial = "🌟 Halo Aisyah, kamu seperti bintang di malam gelap — selalu bersinar! Tetap semangat yaa 🚀";
     document.getElementById("popupMessage").textContent = pesanSpesial;
 
-    function tutupPopup() {
-      document.getElementById("popup").style.display = "none";
-    }
-
     function munculkanEmoji(emoji) {
       const span = document.createElement('span');
       span.className = 'emoji';
@@ -135,8 +131,11 @@
       span.style.left = Math.random() * 90 + "%";
       span.style.bottom = "20px";
       document.body.appendChild(span);
-
       setTimeout(() => span.remove(), 2000);
+    }
+
+    function terimaPesan() {
+      window.location.href = "foto.html"; // Redirect ke halaman foto
     }
   </script>
 </body>
