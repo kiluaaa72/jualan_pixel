@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ucapan Luar Angkasa</title>
-  <link rel="stylesheet" href="space.css">
+  <link rel="stylesheet" href="space.css" />
 </head>
 <body>
   <div class="stars"></div>
-  <div class="planet"></div>
-  <div class="comet"></div>
-  <div class="satellite"></div>
-
 
   <header>
     <h1>🚀 Ucapan Luar Angkasa</h1>
@@ -32,45 +28,47 @@
   <footer>
     © 2025 Ucapan Luar Angkasa.
   </footer>
- <script>
-  // ⭐ Generate bintang random
-  const starsContainer = document.querySelector('.stars');
-  for (let i = 0; i < 150; i++) {
-    const star = document.createElement('div');
-    star.classList.add('star');
-    star.style.top = Math.random() * 100 + 'vh';
-    star.style.left = Math.random() * 100 + 'vw';
-    star.style.animationDuration = (1 + Math.random() * 3) + 's';
-    starsContainer.appendChild(star);
-  }
 
-  // ☄️ Generate komet setiap beberapa detik
-  function createComet() {
-    const comet = document.createElement('div');
-    comet.classList.add('comet');
+  <script>
+    // Bintang acak
+    const starsContainer = document.querySelector('.stars');
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDuration = (1 + Math.random() * 3) + 's';
+      starsContainer.appendChild(star);
+    }
 
-    // Posisi awal komet acak
-    const startX = Math.random() * window.innerWidth;
-    const startY = Math.random() * window.innerHeight / 2;
-    comet.style.top = `${startY}px`;
-    comet.style.left = `${startX}px`;
+    // Komet dari berbagai arah
+    function createComet() {
+      const comet = document.createElement('div');
+      comet.classList.add('comet');
 
-    // Arah terbang acak
-    const dx = (Math.random() * 400 + 200) * (Math.random() < 0.5 ? 1 : -1);
-    const dy = Math.random() * 300 + 100;
-    comet.style.setProperty('--tx', `${dx}px`);
-    comet.style.setProperty('--ty', `${dy}px`);
-    comet.style.animation = `fly 2.5s ease-out forwards`;
+      const directions = [
+        { dx: 300, dy: 300 },
+        { dx: -300, dy: 300 },
+        { dx: -300, dy: -300 },
+        { dx: 300, dy: -300 },
+      ];
 
-    document.body.appendChild(comet);
+      const direction = directions[Math.floor(Math.random() * directions.length)];
 
-    setTimeout(() => comet.remove(), 3000);
-  }
+      const startX = Math.random() * window.innerWidth;
+      const startY = Math.random() * window.innerHeight;
 
-  // Setiap 5 detik munculkan komet
-  setInterval(createComet, 5000);
-</script>
+      comet.style.top = `${startY}px`;
+      comet.style.left = `${startX}px`;
+      comet.style.setProperty('--tx', `${direction.dx}px`);
+      comet.style.setProperty('--ty', `${direction.dy}px`);
+      comet.style.animation = `fly 2.2s ease-out forwards`;
 
+      document.body.appendChild(comet);
+      setTimeout(() => comet.remove(), 2500);
+    }
 
+    setInterval(createComet, 5000);
+  </script>
 </body>
 </html>
