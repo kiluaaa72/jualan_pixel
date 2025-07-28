@@ -107,58 +107,65 @@
     <img src="astronaut-cute.gif" class="astro-icon" alt="Astro Lucu" />
   </main>
 
-  <script>
-    // bintang
-    const starsContainer = document.getElementById("stars");
-    for (let i = 0; i < 150; i++) {
-      const star = document.createElement("div");
-      star.classList.add("star");
-      star.style.top = Math.random() * 100 + "%";
-      star.style.left = Math.random() * 100 + "%";
-      starsContainer.appendChild(star);
-    }
+<script>
+  // Bintang
+  const starsContainer = document.getElementById("stars");
+  for (let i = 0; i < 150; i++) {
+    const star = document.createElement("div");
+    star.classList.add("star");
+    star.style.top = Math.random() * 100 + "%";
+    star.style.left = Math.random() * 100 + "%";
+    starsContainer.appendChild(star);
+  }
 
-    // animasi ketik otomatis
-    const teks = "Pilih lagu favoritmu untuk menemani perjalanan antar bintang ✨";
-    let i = 0;
-    function ketik() {
-      if (i < teks.length) {
-        document.getElementById("type-text").textContent += teks.charAt(i);
-        i++;
-        setTimeout(ketik, 50);
+  // Animasi ketik otomatis
+  const teks = "Pilih lagu favoritmu untuk menemani perjalanan antar bintang ✨";
+  let i = 0;
+  function ketik() {
+    if (i < teks.length) {
+      document.getElementById("type-text").textContent += teks.charAt(i);
+      i++;
+      setTimeout(ketik, 50);
+    }
+  }
+  ketik();
+
+  // Ambil nama dari URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const nama = urlParams.get("nama");
+
+  // Emoji saat pilih lagu
+  function showEmoji() {
+    const emojiList = ["🎵", "🎧", "💖", "🚀", "🌌"];
+    const span = document.createElement("span");
+    span.className = "emoji-float";
+    span.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
+    span.style.left = Math.random() * 90 + "%";
+    span.style.top = "50%";
+    document.body.appendChild(span);
+    setTimeout(() => span.remove(), 2000);
+  }
+
+  // Fungsi lanjut
+  function lanjut() {
+    const lagu = document.getElementById("laguSelect").value;
+    localStorage.setItem("laguDipilih", lagu);
+    localStorage.removeItem("laguWaktu"); // Reset waktu mulai
+
+    const next = `pesan.html?nama=${encodeURIComponent(nama || "")}`;
+
+    try {
+      const iframe = parent.document.getElementById("isi");
+      if (iframe) {
+        iframe.src = next;
+      } else {
+        window.location.href = next;
       }
+    } catch (e) {
+      window.location.href = next;
     }
-    ketik();
+  }
+</script>
 
-    // ambil nama dari URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const nama = urlParams.get('nama');
-
-    // emoji saat pilih lagu
-    function showEmoji() {
-      const emojiList = ["🎵", "🎧", "💖", "🚀", "🌌"];
-      const span = document.createElement("span");
-      span.className = "emoji-float";
-      span.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
-      span.style.left = Math.random() * 90 + "%";
-      span.style.top = "50%";
-      document.body.appendChild(span);
-      setTimeout(() => span.remove(), 2000);
-    }
-
-function lanjut() {
-  const lagu = document.getElementById("laguSelect").value;
-  localStorage.setItem("laguDipilih", lagu);
-  localStorage.removeItem("laguWaktu"); // reset waktu mulai
-
-  // Ganti bagian ini di script:
-if (nama) {
-  parent.document.getElementById("isi").src = `pesan.html?nama=${encodeURIComponent(nama)}`;
-} else {
-  parent.document.getElementById("isi").src = "pesan.html";
-}
-
-
-  </script>
 </body>
 </html>
