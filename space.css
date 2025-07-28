@@ -98,19 +98,6 @@ button:hover {
   }
 }
 
-.planet-1 {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  bottom: 20px;
-  left: 20px;
-  background: radial-gradient(circle, #ffcc00, #cc8800);
-  border-radius: 50%;
-  box-shadow: 0 0 20px #ffcc00;
-  animation: float 4s ease-in-out infinite;
-  z-index: 0;
-}
-
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
