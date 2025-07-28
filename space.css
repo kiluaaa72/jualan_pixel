@@ -8,6 +8,7 @@ body {
   background: linear-gradient(to bottom, #0d0d1a, #0c1835);
   color: white;
   overflow: hidden;
+   position: relative;
 }
 
 main {
@@ -50,13 +51,13 @@ button:hover {
   position: fixed;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   top: 0;
   left: 0;
   z-index: 0;
   pointer-events: none;
-  background: transparent;
+  background: linear-gradient(to bottom, #0d0d1a, #0c1835); /* ✅ tambahkan latar belakang gelap di sini juga */
 }
+
 
 .star {
   position: absolute;
