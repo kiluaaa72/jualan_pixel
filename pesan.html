@@ -161,20 +161,22 @@ const waktu = localStorage.getItem("laguWaktu");
 if (lagu) {
   audio.src = lagu;
 
-  // Set waktu terakhir jika ada
-  if (waktu) {
-    audio.currentTime = parseFloat(waktu);
-  }
-
-  audio.play().catch(() => {
-    console.log("Autoplay diblokir.");
+  // Setelah metadata dimuat, baru atur waktu & play
+  audio.addEventListener("loadedmetadata", () => {
+    if (waktu) {
+      audio.currentTime = parseFloat(waktu);
+    }
+    audio.play().catch(() => {
+      console.log("Autoplay diblokir.");
+    });
   });
 
-  // Update posisi setiap 1 detik
+  // Update posisi lagu setiap detik
   setInterval(() => {
     localStorage.setItem("laguWaktu", audio.currentTime);
   }, 1000);
 }
+
 
   </script>
 </body>
