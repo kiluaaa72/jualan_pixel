@@ -1,9 +1,10 @@
-// Form Ucapan
-const form = document.getElementById('ucapanForm');
-if (form) {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    document.getElementById('successMessage').classList.remove('hidden');
-    form.reset();
-  });
+function playMusic() {
+  alert('Musik luar angkasa diputar! (demo)');
 }
+document.getElementById('pesanForm')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const nama = document.getElementById('nama').value;
+  const pesan = document.getElementById('pesan').value;
+  document.getElementById('hasilPesan').innerHTML = `<p><strong>${nama}:</strong> ${pesan}</p>`;
+  this.reset();
+});

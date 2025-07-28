@@ -3,39 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kirim Pesan - Ucapan Luar Angkasa</title>
-  <link rel="stylesheet" href="assets/css/space.css">
-  <script defer src="assets/js/space.js"></script>
+  <title>Kirim Pesan</title>
+  <link rel="stylesheet" href="space.css">
+  <script defer src="space.js"></script>
 </head>
 <body>
-  <div class="stars"></div>
-  <div class="stars2"></div>
-  <div class="stars3"></div>
-
-  <header class="navbar">
-    <h1>🚀 Kirim Ucapan</h1>
+  <header>
+    <h1>🚀 Kirim Pesan</h1>
     <nav>
       <a href="index.html">Beranda</a>
-      <a href="pesan.html" class="active">Pesan</a>
+      <a href="pesan.html">Pesan</a>
       <a href="foto.html">Foto</a>
       <a href="penutup.html">Penutup</a>
     </nav>
   </header>
-
-  <section class="form-section">
-    <h2 class="glow-text">Kirim Ucapanmu ✨</h2>
-    <form id="ucapanForm" class="space-form">
-      <label for="nama">Nama:</label>
-      <input type="text" id="nama" name="nama" placeholder="Masukkan nama kamu" required>
-
-      <label for="pesan">Pesan:</label>
-      <textarea id="pesan" name="pesan" placeholder="Tulis pesan spesialmu..." required></textarea>
-
-      <button type="submit" class="glow-button">Kirim 🚀</button>
+  <main>
+    <h2>Tulis Pesan Anda</h2>
+    <form id="pesanForm">
+      <input type="text" id="nama" placeholder="Nama Anda" required>
+      <textarea id="pesan" placeholder="Tulis ucapan..." required></textarea>
+      <button type="submit">Kirim</button>
     </form>
-    <div id="successMessage" class="hidden glow-text">Terima kasih atas pesanmu! 🌌</div>
-  </section>
-
+    <div id="hasilPesan"></div>
+  </main>
   <footer>
     <p>© 2025 Ucapan Luar Angkasa.</p>
   </footer>
