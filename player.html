@@ -18,28 +18,36 @@
 </head>
 <body>
   <!-- Pemutar lagu -->
-  <audio id="bgm" autoplay loop></audio>
+  <audio id="bgm" autoplay loop hidden></audio>
 
   <!-- Iframe konten -->
   <iframe id="isi" src="index.html"></iframe>
 
   <script>
     const audio = document.getElementById("bgm");
-    const lagu = localStorage.getItem("laguDipilih") || "lagu 1.mp3";
+    const lagu = localStorage.getItem("laguDipilih");
     const waktu = localStorage.getItem("laguWaktu");
 
-    audio.src = lagu;
-    audio.addEventListener("loadedmetadata", () => {
-      if (waktu) audio.currentTime = parseFloat(waktu);
-      audio.play().catch(() => {});
-    });
+    if (lagu) {
+      audio.src = lagu;
+      audio.load();
 
-    // Simpan posisi lagu tiap detik
-    setInterval(() => {
-      localStorage.setItem("laguWaktu", audio.currentTime);
-    }, 1000);
+      audio.addEventListener("loadedmetadata", () => {
+        if (waktu) {
+          audio.currentTime = parseFloat(waktu);
+        }
+        audio.play().catch((err) => {
+          console.warn("Autoplay gagal, butuh interaksi:", err);
+        });
+      });
 
-    // Juga simpan waktu saat keluar halaman
+      setInterval(() => {
+        localStorage.setItem("laguWaktu", audio.currentTime);
+      }, 1000);
+    } else {
+      console.warn("Belum ada lagu yang dipilih.");
+    }
+
     window.addEventListener("beforeunload", () => {
       localStorage.setItem("laguWaktu", audio.currentTime);
     });
