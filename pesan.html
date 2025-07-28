@@ -5,6 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pesan dari Luar Angkasa</title>
   <link rel="stylesheet" href="space.css" />
+  <style>
+    .emoji {
+      position: fixed;
+      font-size: 2rem;
+      animation: fly 2s linear forwards;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    @keyframes fly {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-200px);
+        opacity: 0;
+      }
+    }
+
+    .popup-content .buttons {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .popup-content .buttons button {
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      background-color: cyan;
+      color: #000;
+      transition: background-color 0.3s;
+    }
+
+    .popup-content .buttons button:hover {
+      background-color: #00bbbb;
+    }
+  </style>
 </head>
 <body>
   <!-- Bintang -->
@@ -18,7 +61,11 @@
     <div class="popup-content">
       <h2>🚀 Pesan Dari Galaksi</h2>
       <p id="popupMessage">...</p>
-      <button onclick="tutupPopup()">Terima 🌟</button>
+      <div class="buttons">
+        <button onclick="tutupPopup()">Terima 🌟</button>
+        <button onclick="munculkanEmoji('🤗')">Peluk Jauh 🤗</button>
+        <button onclick="munculkanEmoji('❤️')">Love ❤️</button>
+      </div>
     </div>
   </div>
 
@@ -72,14 +119,24 @@
     moveAstronaut();
   </script>
 
-  <!-- Script untuk menampilkan pesan -->
+  <!-- Script untuk pesan dan emoji -->
   <script>
     const pesanSpesial = "🌟 Halo Aisyah, kamu seperti bintang di malam gelap — selalu bersinar! Tetap semangat yaa 🚀";
-
     document.getElementById("popupMessage").textContent = pesanSpesial;
 
     function tutupPopup() {
       document.getElementById("popup").style.display = "none";
+    }
+
+    function munculkanEmoji(emoji) {
+      const span = document.createElement('span');
+      span.className = 'emoji';
+      span.textContent = emoji;
+      span.style.left = Math.random() * 90 + "%";
+      span.style.bottom = "20px";
+      document.body.appendChild(span);
+
+      setTimeout(() => span.remove(), 2000);
     }
   </script>
 </body>
