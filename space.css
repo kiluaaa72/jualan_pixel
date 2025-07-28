@@ -100,6 +100,11 @@ button:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   transition: transform 3s ease-in-out;
+   opacity: 0;
+  transition: opacity 2s ease, transform 3s ease-in-out;
+}
+.astronaut.show {
+  opacity: 1;
 }
 
 @keyframes fadeInUp {
