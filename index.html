@@ -84,6 +84,16 @@ setTimeout(() => {
 
     <audio id="bgm" autoplay loop hidden></audio>
 
+// putar lagu dari localStorage
+const lagu = localStorage.getItem("laguDipilih");
+if (lagu) {
+  const audio = document.getElementById("bgm");
+  audio.src = lagu;
+  audio.play().catch(() => {
+    // kadang autoplay diblok, user perlu interaksi dulu
+    console.log("Autoplay diblokir. Tunggu interaksi user.");
+  });
+}
 
   </script>
 </body>
