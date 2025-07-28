@@ -7,16 +7,16 @@ body {
   font-family: 'Chewy', cursive;
   background: linear-gradient(to bottom, #0d0d1a, #0c1835);
   color: white;
-  position: relative;
   min-height: 100vh;
-  overflow-x: hidden; /* ✅ hanya horizontal */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 main {
   text-align: center;
-  padding: 100px 20px; /* ✅ Biar turun & responsif */
   z-index: 2;
-  position: relative;
 }
 
 h1 {
