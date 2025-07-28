@@ -93,23 +93,14 @@ button:hover {
 
 .astronaut {
   position: absolute;
-  width: 120px; /* bisa kamu ubah lebih kecil/besar */
- left: 85%;
-top: 40%;
-  transform: translate(-50%, -50%);
-  animation: float-astro 6s ease-in-out infinite;
-  z-index: 2; /* pastikan di atas bintang */
+  width: 120px;
+  top: 0;
+  left: 0;
+  z-index: 2;
   pointer-events: none;
 }
 
-@keyframes float-astro {
-  0%, 100% {
-    transform: translate(-50%, -50%) translateY(0);
-  }
-  50% {
-    transform: translate(-50%, -50%) translateY(-20px);
-  }
-}
+
 
 @keyframes fly {
   0% {
