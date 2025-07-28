@@ -24,15 +24,9 @@
   <iframe id="isi" src="index.html"></iframe>
 
   <script>
-  window.addEventListener("beforeunload", () => {
-    localStorage.setItem("laguWaktu", audio.currentTime);
-  });
-</script>
-
-  <script>
-    const lagu = localStorage.getItem("laguDipilih") || "lagu1.mp3";
-    const waktu = localStorage.getItem("laguWaktu");
     const audio = document.getElementById("bgm");
+    const lagu = localStorage.getItem("laguDipilih") || "lagu 1.mp3";
+    const waktu = localStorage.getItem("laguWaktu");
 
     audio.src = lagu;
     audio.addEventListener("loadedmetadata", () => {
@@ -40,10 +34,15 @@
       audio.play().catch(() => {});
     });
 
-    // simpan posisi lagu tiap detik
+    // Simpan posisi lagu tiap detik
     setInterval(() => {
       localStorage.setItem("laguWaktu", audio.currentTime);
     }, 1000);
+
+    // Juga simpan waktu saat keluar halaman
+    window.addEventListener("beforeunload", () => {
+      localStorage.setItem("laguWaktu", audio.currentTime);
+    });
   </script>
 </body>
 </html>
