@@ -75,8 +75,13 @@ function moveAstronaut() {
   astronaut.style.transform = `translate(${randX}px, ${randY}px) rotate(${rotateDeg}deg)`;
 }
 
-setInterval(moveAstronaut, 3000);
-moveAstronaut(); // langsung muncul
+// TUNDA MUNCULNYA astronaut
+setTimeout(() => {
+  astronaut.classList.add("show"); // fade-in astronaut
+  moveAstronaut(); // posisi pertama
+  setInterval(moveAstronaut, 3000); // gerak terus
+}, 1500); // delay 1.5 detik
+
 
   </script>
 </body>
