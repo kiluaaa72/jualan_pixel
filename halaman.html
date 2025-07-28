@@ -13,19 +13,21 @@
   <!-- Astronaut (melayang & muter) -->
   <img src="astronaut-cute.gif" alt="Astronaut lucu melayang" class="astronaut" id="astro" />
 
+  <!-- Musik -->
+  <audio id="bgm" autoplay loop hidden></audio>
+
   <!-- Konten utama -->
-<main>
-  <div class="text-group">
-    <h1>🚀 Ucapan Luar Angkasa</h1>
-    <p>Selamat datang di luar angkasa. Siap menjelajah pesan spesial?</p>
-    <a href="pesan.html">
-      <button>Mulai 🚀</button>
-    </a>
-  </div>
-</main>
+  <main>
+    <div class="text-group">
+      <h1>🚀 Ucapan Luar Angkasa</h1>
+      <p>Selamat datang di luar angkasa. Siap menjelajah pesan spesial?</p>
+      <a href="pesan.html">
+        <button>Mulai 🚀</button>
+      </a>
+    </div>
+  </main>
 
-
-  <!-- Script bintang, komet, dan astronaut -->
+  <!-- Script bintang, komet, astronaut, dan musik -->
   <script>
     // Bintang
     const starsContainer = document.getElementById("stars");
@@ -61,40 +63,35 @@
     }
     setInterval(createComet, 2000);
 
- // Astronaut muter dan keliling bebas layar
-const astronaut = document.getElementById("astro");
+    // Astronaut muter dan keliling bebas layar
+    const astronaut = document.getElementById("astro");
 
-function moveAstronaut() {
-  const screenW = window.innerWidth;
-  const screenH = window.innerHeight;
+    function moveAstronaut() {
+      const screenW = window.innerWidth;
+      const screenH = window.innerHeight;
 
-  const randX = Math.random() * (screenW - 120);
-  const randY = Math.random() * (screenH - 120);
-  const rotateDeg = Math.random() * 360;
+      const randX = Math.random() * (screenW - 120);
+      const randY = Math.random() * (screenH - 120);
+      const rotateDeg = Math.random() * 360;
 
-  astronaut.style.transform = `translate(${randX}px, ${randY}px) rotate(${rotateDeg}deg)`;
-}
+      astronaut.style.transform = `translate(${randX}px, ${randY}px) rotate(${rotateDeg}deg)`;
+    }
 
-// TUNDA MUNCULNYA astronaut
-setTimeout(() => {
-  astronaut.classList.add("show"); // fade-in astronaut
-  moveAstronaut(); // posisi pertama
-  setInterval(moveAstronaut, 3000); // gerak terus
-}, 1500); // delay 1.5 detik
+    setTimeout(() => {
+      astronaut.classList.add("show"); // fade-in astronaut
+      moveAstronaut(); // posisi pertama
+      setInterval(moveAstronaut, 3000); // gerak terus
+    }, 1500); // delay 1.5 detik
 
-    <audio id="bgm" autoplay loop hidden></audio>
-
-// putar lagu dari localStorage
-const lagu = localStorage.getItem("laguDipilih");
-if (lagu) {
-  const audio = document.getElementById("bgm");
-  audio.src = lagu;
-  audio.play().catch(() => {
-    // kadang autoplay diblok, user perlu interaksi dulu
-    console.log("Autoplay diblokir. Tunggu interaksi user.");
-  });
-}
-
+    // Putar lagu dari localStorage
+    const lagu = localStorage.getItem("laguDipilih");
+    if (lagu) {
+      const audio = document.getElementById("bgm");
+      audio.src = lagu;
+      audio.play().catch(() => {
+        console.log("Autoplay diblokir. Tunggu interaksi user.");
+      });
+    }
   </script>
 </body>
 </html>
